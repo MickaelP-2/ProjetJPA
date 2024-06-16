@@ -7,8 +7,7 @@
   <properties>
 		<maven.compiler.source>17</maven.compiler.source>
 		<maven.compiler.target>17</maven.compiler.target>
-	</properties>
-	
+  </properties>
 	<dependencies>
 		
 		<!-- https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client -->
@@ -36,5 +35,6 @@
  			<version>6.5.2.Final</version>
 		</dependency>
 	</dependencies>
+	
   
 </project>
