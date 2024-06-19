@@ -22,26 +22,30 @@ import javax.swing.JTextField;
 public class Accueil extends JFrame implements ActionListener,Runnable{
 
 	/**
-	 * 
+	 * Declaration des attibuts de la classe
 	 */
 	private static final long serialVersionUID = 1L;
 	BorderLayout bl,bl2;
 	GridLayout gl1,gl2;
 	JPanel JP1,JP2,JP3;
-	JTextArea txta;//pour l'affichage des resultats des requetes
+	static JTextArea txta;//pour l'affichage des resultats des requetes
 	JTextField txtf1;//affichage de la date et de messages
 	JLabel label1;
 	String ligne1,ligne2;
 	JButton quitter,verifier,requete;//verifier affiche la fenetre de verification,
-	JRadioButton JRB1,JRB2,JRB3,JRB4,JRB5;
+	static JRadioButton JRB1,JRB2,JRB3,JRB4,JRB5;
 	ButtonGroup bg;
-	JScrollPane jsp;
+	static JScrollPane jsp;//static?? -> txta
 	public Thread T1;
 	boolean isAlive ;
 	Calendar date;
 	Date date1,date2;
 	SimpleDateFormat formatDate;
+	
 	//
+	/**
+	 * Constructeur de la classe.
+	 */
 	Accueil(){
 		formatDate = new SimpleDateFormat("EEEE dd MMMM yyyy HH':'mm':'ss",new Locale("fr","FR"));
 		isAlive = true;
@@ -65,15 +69,20 @@ public class Accueil extends JFrame implements ActionListener,Runnable{
 		txtf1 = new JTextField();
 		jsp = new JScrollPane(txta);
 		jsp.setBounds(10,50,350,150);
-		JRB1 = new JRadioButton("Requete 1",false);
+		//Afficher les N meilleurs butteurs de tous les temps
+		JRB1 = new JRadioButton(" Afficher les N meilleurs buteurs de tous les temps.",false);
 		JRB1.addActionListener(this);
-		JRB2 = new JRadioButton("Requete 2",false);
+		//afficher les N meilleurs butteurs d'une competition donnée
+		JRB2 = new JRadioButton(" Afficher les N meilleurs buteurs d'un compétition donnée.",false);
 		JRB2.addActionListener(this);
-		JRB3 = new JRadioButton("Requete 3",false);
+		//Afficher les N meilleurs butteurs d'une equipe donnée
+		JRB3 = new JRadioButton(" Afficher les N meilleurs buteurs d'une equipe donnée.",false);
 		JRB3.addActionListener(this);
-		JRB4 = new JRadioButton("Requete 4",false);
+		//Afficher les N equipesqui ont gagnés le plus de matchs en %
+		JRB4 = new JRadioButton(" Afficher les N équipes qui ont gagnés le pus de match (en %)",false);
 		JRB4.addActionListener(this);
-		JRB5 = new JRadioButton("Requete 5",false);
+		//Afficher les matchs entre 2 equipe données et  affocher le % de victoires de chaque equipe
+		JRB5 = new JRadioButton(" Afficher les matchs entres 2 équipes données et le % de victoire de chacune.",false);
 		JRB5.addActionListener(this);
 		bg = new ButtonGroup();
 		bg.add(JRB1);
@@ -105,17 +114,25 @@ public class Accueil extends JFrame implements ActionListener,Runnable{
 		this.add("South",JP3);
 		this.add("East",JP1);
 		this.setLocation(100,100);
-		this.setSize(500,450);
+		this.setSize(650,450);
 		this.setVisible(true);
 		T1.run();
 	}//fin constructeur()
-
+	
+	/**
+	 * Methode main pour tester l'interface
+	 * Visualiser la fenetre créée
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Accueil ACC = new Accueil();
 		ACC.setVisible(true);
 	}//fin main()
 
+		/**
+		 * Methode pour ajouter des actions aux différents boutons
+		 */
 	@Override
 	public void actionPerformed(ActionEvent ae) {
 		// TODO Auto-generated method stub
@@ -136,8 +153,31 @@ public class Accueil extends JFrame implements ActionListener,Runnable{
 			VerificationBase verif = new VerificationBase();
 			verif.setVisible(true);
 		}
+		else if(obj==requete && JRB1.isSelected()==true) {
+			Requete1 req1 = new Requete1();
+			req1.setVisible(true);
+		}
+		else if(obj==requete && JRB2.isSelected()==true) {
+			Requete2 req2 = new Requete2();
+			req2.setVisible(true);
+		}
+		else if(obj==requete && JRB3.isSelected()==true) {
+			Requete3 req3 = new Requete3();
+			req3.setVisible(true);
+		}
+		else if(obj==requete && JRB4.isSelected()==true) {
+			Requete4 req4 = new Requete4();
+			req4.setVisible(true);
+		}
+		else if(obj==requete && JRB5.isSelected()==true) {
+			Requete5 req5 = new Requete5();
+			req5.setVisible(true);
+		}
 	}//fin actionPerformed()
-@Override
+	/**
+	 * methode run pour implementer, l'affichage de la date 
+	 */
+	@Override
 	public void run() {
 		// TODO Auto-generated method stub
 		date = Calendar.getInstance();

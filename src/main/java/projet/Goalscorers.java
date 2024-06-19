@@ -2,7 +2,6 @@ package projet;
 
 import java.time.LocalDate;
 import java.util.Date;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -90,10 +89,13 @@ public class Goalscorers {
 
 	
 
+	
+
 	@Override
 	public String toString() {
 		return "Goalscorers [id=" + id + ", date=" + date + ", homeTeam=" + homeTeam + ", awayTeam=" + awayTeam
-				+ ", team=" + team + ", minute=" + minute + ", ownGoal=" + ownGoal + ", penalty=" + penalty + "]";
+				+ ", team=" + team + ", scorer=" + scorer + ", minute=" + minute + ", ownGoal=" + ownGoal + ", penalty="
+				+ penalty + "]";
 	}
 
 	public String getScorer() {
@@ -127,6 +129,21 @@ public class Goalscorers {
 	public void setPenalty(boolean penalty) {
 		this.penalty = penalty;
 	}
+	//
+	/*
+	@Override
+	public int compareTo(Goalscorers gs1, Goalscorers gs2) {
+	
+			if (gs1.getPopulation()>o2.getPopulation()){
+				return 1;
+			}
+			else if (o1.getPopulation()<o2.getPopulation()){
+				return -1;
+			}
+			return 0;
+	}
+	*/
+	//
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
