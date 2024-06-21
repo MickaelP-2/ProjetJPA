@@ -5,12 +5,21 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.nio.file.Path;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Persistence;
+import jakarta.persistence.Query;
 
 /**
  * Classe qui réalise la requete noméro 5:
@@ -85,6 +94,124 @@ public class Requete5 extends JFrame implements ActionListener{
 	 */
 	public void requeteMethode5() {
 		System.out.println("req5!!");
+		Accueil.txta.setText(null);
+		String equipe1 = null;
+		String equipe2 = null;
+		if(txtf1.getText().equals("")==true || txtf2.getText().equals("")==true) {
+			//test pour verfiier les valeurs des 2 equipes
+			txtf3.setText("Nommer les 2 equipes.");
+			return;
+		}
+		else {
+			equipe1 = txtf1.getText();
+			equipe2 = txtf2.getText();
+		}
+		System.out.println("Equipes: "+equipe1+" "+equipe2);//OK
+		//recherche dans la base les matchs entre les deux equipes et copie dans un HashMap
+		HashMap<String, Pourcents> copieFichier;//Composant HashMap types: String pour le nom de l'equipe, Pourcents pour les valeurs
+		List<Results> list;//type Results
+		Iterator<Results> iter;//type results
+		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("config1");//Foot dans persistence.xm
+		EntityManager em = entityManagerFactory.createEntityManager();
+		EntityTransaction transaction = em.getTransaction();
+			//Ouverture de la transaction pour le contexte de persistence
+			transaction.begin();//ouverture de la transaction
+			//Lecture de la table et copie dans un hashset-> cumul de buts si deja existants
+			Query query = em.createQuery("SELECT rs FROM Results rs WHERE (rs.homeTeam = :equipe1 OR rs.homeTeam = :equipe2) AND (rs.awayTeam = :equipe1 OR rs.awayTeam = :equipe2)");
+			query.setParameter("equipe1", equipe1);
+			query.setParameter("equipe2", equipe2);
+			//selectionner dans Result les equipes
+			list = query.getResultList();
+			System.out.println("list??: "+list.size()+"\n "+list);//OK
+			int nbBut = 0;
+			String equipe = null;
+			int nbMatch =0;//pour le nb total de match joués
+			int victoires=0,defaites=0,nuls=0;//defaite ou victoire -> null non pris en compte
+			copieFichier = new HashMap<String, Pourcents>();//nomVille, Score(away+home)
+			if(list.size()>0) {
+				iter = list.iterator();
+				int i = 1;//pour le nb max a afficher
+				while(iter.hasNext()) {//&& i<nb
+					Results RS = iter.next();
+					equipe = RS.getHomeTeam();
+					if(copieFichier.containsKey(equipe)==true) {
+						//cas ou l'equipe est dans le HashMap
+						if(RS.getHomeTeam().equals(equipe)==true) {
+							//pour le cas equipe=HomeTeam
+							nbMatch++;
+							if(RS.getHomeScore()>RS.getAwayScore()) {
+								victoires++;
+							}
+							else if(RS.getHomeScore()<RS.getAwayScore()) {
+								defaites++;
+							}
+							else if(RS.getHomeScore() == RS.getAwayScore()) {
+								nuls++;
+							}
+						}
+						else if(RS.getAwayTeam().equals(equipe)==true) {
+							//pour le cas ou equipe=Awayteam
+							nbMatch++;
+							if(RS.getHomeScore()<RS.getAwayScore()) {
+								victoires++;
+							}
+							else if(RS.getHomeScore()>RS.getAwayScore()) {
+								defaites++;
+							}
+							else if(RS.getHomeScore() == RS.getAwayScore()) {
+								nuls++;
+							}
+						}
+						copieFichier.replace(equipe,new Pourcents(victoires,defaites,nuls,nbMatch,0.0,0.0,0.0));
+				}//fin if(equipe presente
+					else if(copieFichier.containsKey(equipe)==false) {
+						//cas ou l'equipe n'est pas dans le HashMap
+						if(RS.getHomeTeam().equals(equipe)==true) {
+							//pour le cas equipe=HomeTeam
+							nbMatch=0;
+							victoires=0;
+							defaites=0;
+							nuls=0;
+							nbMatch++;
+							if(RS.getHomeScore()>RS.getAwayScore()) {
+								victoires++;
+							}
+							else if(RS.getHomeScore()<RS.getAwayScore()) {
+								defaites++;
+							}
+							else if(RS.getHomeScore() == RS.getAwayScore()) {
+								nuls++;
+							}
+						}
+						else if(RS.getAwayTeam().equals(equipe)==true) {
+							//pour le cas ou equipe=Awayteam
+							nbMatch=0;
+							victoires=0;
+							defaites=0;
+							nuls=0;
+							nbMatch++;
+							if(RS.getHomeScore()<RS.getAwayScore()) {
+								victoires++;
+							}
+							else if(RS.getHomeScore()>RS.getAwayScore()) {
+								defaites++;
+							}
+							else if(RS.getHomeScore() == RS.getAwayScore()) {
+								nuls++;
+							}
+						}
+						copieFichier.put(equipe,new Pourcents(victoires,defaites,nuls,nbMatch,0.0,0.0,0.0));
+					}
+				}
+				transaction.commit();
+				em.close();
+				
+			}//fin if()
+			else if(list.size()==0) {
+				Accueil.txta.setText("Equipe inconnue!!");
+			}
+			//
+			
 	}
 	//
 	/**

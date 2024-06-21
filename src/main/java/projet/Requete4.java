@@ -5,6 +5,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.nio.file.Path;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -92,23 +93,16 @@ public class Requete4 extends JFrame implements ActionListener{
 	 * Methode qui contient le code de la requete 4
 	 */
 	public void requeteMethode4() {
-		System.out.println("req4!!");
 		Accueil.txta.setText(null);
-		HashMap<String, Pourcents> copieFichier;
-		List<Results> list;//type Goalscorers
-		Iterator<Results> iter;//type Goalscorers
-		int nb = Integer.parseInt(txtf1.getText());
-		String competition = txtf2.getText();
-		String[] copie;
-		String ligne2 ="";
-		String ligne = null;
+		HashMap<String, Pourcents> copieFichier;//Composant HashMap types: String pour le nom de l'equipe, Pourcents pour les valeurs
+		List<Results> list;//type Results
+		Iterator<Results> iter;//type Results
 		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("config1");//Foot dans persistence.xm
 		EntityManager em = entityManagerFactory.createEntityManager();
 		EntityTransaction transaction = em.getTransaction();
 			//Ouverture de la transaction pour le contexte de persistence
 			transaction.begin();//ouverture de la transaction
 			//Lecture de la table et copie dans un hashset-> cumul de buts si deja existants
-			//**Query query = em.createQuery("SELECT gs FROM Goalscorers gs WHERE gs.scorer = :nom");
 			Query query = em.createQuery("SELECT rs FROM Results rs");
 			//selectionner dans Result les equipes
 			list = query.getResultList();
@@ -122,7 +116,6 @@ public class Requete4 extends JFrame implements ActionListener{
 				int i = 1;//pour le nb max a afficher
 				while(iter.hasNext()) {//&& i<nb
 					Results RS = iter.next();
-					System.out.println(i+"->"+RS.toString());
 					equipe = RS.getHomeTeam();
 					if(copieFichier.containsKey(equipe)==true) {
 						//cas ou l'equipe est dans le HashMap
@@ -152,7 +145,7 @@ public class Requete4 extends JFrame implements ActionListener{
 								nuls++;
 							}
 						}
-						copieFichier.replace(equipe,new Pourcents(victoires,defaites,nuls,nbMatch));
+						copieFichier.replace(equipe,new Pourcents(victoires,defaites,nuls,nbMatch,0.0,0.0,0.0));
 				}//fin if(equipe presente
 					else if(copieFichier.containsKey(equipe)==false) {
 						//cas ou l'equipe n'est pas dans le HashMap
@@ -190,7 +183,7 @@ public class Requete4 extends JFrame implements ActionListener{
 								nuls++;
 							}
 						}
-						copieFichier.put(equipe,new Pourcents(victoires,defaites,nuls,nbMatch));
+						copieFichier.put(equipe,new Pourcents(victoires,defaites,nuls,nbMatch,0.0,0.0,0.0));
 					}
 				}
 				transaction.commit();
@@ -200,39 +193,76 @@ public class Requete4 extends JFrame implements ActionListener{
 				Accueil.txta.setText("Equipe inconnue!!");
 			}
 			//Lecture de copieFichier
-			System.out.println("match: "+nb+" copie: "+copieFichier.size());
-			System.out.println("-> copie: "+copieFichier.toString());
+			//declaration d'un objet de type List<Pourcents>
 			List<Pourcents> list2 = new ArrayList<Pourcents>();
+			//iterator sur les cles de type string du HashMap
 			Iterator<String> iterKey = copieFichier.keySet().iterator();
+			//iterator sur les valeurs de type Pourcents du HashMap
 			Iterator<Pourcents> iterValue = copieFichier.values().iterator();
-			Pourcents pour;
+			//declaration d'un objet de type List<Pourcents>
+			List<Pourcents> list3 = new ArrayList<Pourcents>();
+			Pourcents pour3 = new Pourcents();
+			String key = null;
+			Pourcents pour = new Pourcents();//declaration d'une instance de Pourcents
+			DecimalFormat format = new DecimalFormat("##0.00");//formatage pour les attributs de type double(2 chiffres apres la virgule)
+			int i = 0;
 			//Pour nb a afficher utiliser var defaut pour tous afficher!!
 			while(iterKey.hasNext() && iterValue.hasNext()) {
-				System.out.println(">"+iterKey.next()+" "+iterValue.next());
-				/*
-				pour = new Pourcents(iterValue.hasNext());
-				pour.setStr(iterKey.next());
-				scor.setNombre(Integer.parseInt(iterValue.next().toString()));
-				list2.add(scor);
-				*/
+				i++;
+				key= iterKey.next();//iterator sur les cles du HashMap
+				pour = iterValue.next();//iterator sur les valeurs du HashMap
+				//calcul des pourcentages d'une instance de ourcents
+				pour.setPourcentageVictoires(pour.pourcentageVictoire(pour.getTotal(),pour.getVictoires()));
+				pour.setPourcentageDefaites(pour.pourcentageVictoire(pour.getTotal(),pour.getDefaites()));
+				pour.setPourcentageNuls(pour.pourcentageVictoire(pour.getTotal(),pour.getNuls()));
+				Object obj1 = format.format(pour.getPourcentageVictoires());
+				if(obj1.toString().contains(",")==true) {
+					obj1 = obj1.toString().replace(',','.');//pour remplacer la , par .-> notation anglo-saxonne
+				}
+				Object obj2 = format.format(pour.getPourcentageDefaites());
+				if(obj2.toString().contains(",")==true) {
+					obj2 = obj2.toString().replace(',','.');//pour remplacer la , par .-> notation anglo-saxonne
+				}
+				Object obj3 = format.format(pour.getPourcentageNuls());
+				if(obj3.toString().contains(",")==true) {
+					obj3 = obj3.toString().replace(',','.');//pour remplacer la , par .-> notation anglo-saxonne
+				}
+				//affectation des pourcentages d'une instance de Pourcents
+				pour.setPourcentageVictoires(Double.parseDouble(obj1.toString()));//obj1.toString()
+				pour.setPourcentageDefaites(Double.parseDouble(obj2.toString()));
+				pour.setPourcentageNuls(Double.parseDouble(obj3.toString()));
+				pour3 = new Pourcents(key,pour.getVictoires(),pour.getDefaites(),pour.getNuls(),pour.getTotal(),pour.getPourcentageVictoires(),pour.getPourcentageDefaites(),pour.getPourcentageNuls());
+				list3.add(pour3);
 			}
-			/*
-			Collections.sort(list2, Scores.comparateurScore);//ordre alphabetic des noms
-			String[] tab = list2.toString().split(",");
+			//Utiliser la transformation de Pourcents(tri) et l'associer a 
+			Collections.sort(list3, Pourcents.comparateurPourcentageVictoire);//ordre alphabetic des noms
+			String[] tab = list3.toString().split("],");//=OK pour separation lignes
+			//verification du nombre d'equipes a afficher
+			int nb = 0;
+			try {
+				nb = Integer.parseInt(txtf1.getText());
+			}
+			catch(Exception e) {
+				//gestion de l'exception et affectation de 
+				System.err.println("??: "+e.toString());
+				nb = tab.length;
+			}
 			if(nb>tab.length) {
-			nb=tab.length;
+				nb = tab.length;//changement de valeur si le nombre disponible est inferieur a celui demandé
 			}
-			Accueil.txta.setText(competition+" : \n");
-			for(int j=0;j<nb;j++) {
+			Accueil.txta.setText("Equipe(s) : \n");
+			for(int j=0;j<nb;j++) { 
+				
 				if(tab[j].toString().contains("[")==true) {
 					tab[j] = tab[j].toString().replace("[","");
 				}
 				else if(tab[j].toString().contains("]")==true) {
 					tab[j] = tab[j].toString().replace("]","");
 				}
-				Accueil.txta.append((j+1)+": "+tab[j].toString()+" but(s)\n");
+				String[] tab2 = tab[j].toString().split(",");
+				//affichage des resultats dans un composant TextArea+ScrollPane(Vertical+Horizintal
+				Accueil.txta.append((j+1)+": "+tab2[0].toString()+": "+tab2[5].toString()+" % victoire en "+tab2[4].toString()+" matchs.\n");
 			}
-			*/
 	}
 	//
 	/**
@@ -245,10 +275,9 @@ public class Requete4 extends JFrame implements ActionListener{
 		if(obj == executer) {
 			txtf2.setText("");
 			if(txtf1.getText().equals("")==true) {
-				txtf2.setText("Nommer l'équipe!!");
+				txtf2.setText("Saisir le nombre d'equipes à afficher!!");
 				return;
 			}
-			System.out.println("JRB4: "+Accueil.JRB4.isSelected());
 			requeteMethode4();
 		}
 		else if(obj == fermer) {

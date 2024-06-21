@@ -11,6 +11,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
+import jakarta.persistence.Query;
 
 public class ConnexionProjetFoot {
 
@@ -49,8 +50,11 @@ public class ConnexionProjetFoot {
 			Statement stat =  myConnexion.createStatement();
 			//int nbLignesModif = stat.executeUpdate("INSERT INTO FOURNISSEUR (id_fournisseur,nom) values (4,'Leroy Merlin')");
 			//Exception si existant(id_fourniseur)
+			EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("config1");//Foot dans persistence.xm
+			EntityManager em = entityManagerFactory.createEntityManager();
+			EntityTransaction transaction = em.getTransaction();
 			boolean testCreate = stat.execute("CREATE DATABASE IF NOT EXISTS nimport");//0 car id=7 inexistant
-			
+			Query query = em.createQuery("CREATE DATABASE IF NOT EXISTS nimport");
 			//
 			//SELECT = executeQuery-> se positionner sur la premiere ligne = resultat.next()
 			//ArrayList<Fournisseur> listeFournisseur = new ArrayList<>();//-> ajouter classe fournisseur
@@ -63,6 +67,7 @@ public class ConnexionProjetFoot {
 			*/
 			
 			stat.close();//fermeture statement
+			em.close();
 			myConnexion.close();//fermeture connection
 			System.out.println("testCreate: "+testCreate);
 		} 

@@ -79,7 +79,7 @@ public class Accueil extends JFrame implements ActionListener,Runnable{
 		JRB3 = new JRadioButton(" Afficher les N meilleurs buteurs d'une equipe donnée.",false);
 		JRB3.addActionListener(this);
 		//Afficher les N equipesqui ont gagnés le plus de matchs en %
-		JRB4 = new JRadioButton(" Afficher les N équipes qui ont gagnés le pus de match (en %)",false);
+		JRB4 = new JRadioButton(" Afficher les N équipes qui ont gagnés le plus de match (en %)",false);
 		JRB4.addActionListener(this);
 		//Afficher les matchs entre 2 equipe données et  affocher le % de victoires de chaque equipe
 		JRB5 = new JRadioButton(" Afficher les matchs entres 2 équipes données et le % de victoire de chacune.",false);
