@@ -64,8 +64,8 @@ public class Accueil extends JFrame implements ActionListener,Runnable{
 		requete.addActionListener(this);
 		label1 = new JLabel("Résultats: ");
 		label1.setHorizontalAlignment((int)CENTER_ALIGNMENT);
-		txta = new JTextArea(20,25);
-		txta.setSize(10,25);
+		txta = new JTextArea(20,28);
+		txta.setSize(20,28);
 		txtf1 = new JTextField();
 		jsp = new JScrollPane(txta);
 		jsp.setBounds(10,50,350,150);
@@ -114,7 +114,7 @@ public class Accueil extends JFrame implements ActionListener,Runnable{
 		this.add("South",JP3);
 		this.add("East",JP1);
 		this.setLocation(100,100);
-		this.setSize(650,450);
+		this.setSize(750,450);
 		this.setVisible(true);
 		T1.run();
 	}//fin constructeur()

@@ -75,11 +75,6 @@ public class Pourcents {
 	
 	@Override
 	public String toString() {
-		/*
-		return "Pourcents [equipe=" + equipe + ", victoires=" + victoires + ", defaites=" + defaites + ", nuls=" + nuls
-				+ ", total=" + total + ", pourcentageVictoires=" + pourcentageVictoires + ", pourcentageDefaites="
-				+ pourcentageDefaites + ", pourcentageNuls=" + pourcentageNuls + "]";
-		*/
 		return equipe + "," + victoires + "," + defaites + "," + nuls+ "," + total + "," + pourcentageVictoires + ","+ pourcentageDefaites + "," + pourcentageNuls + "]";
 	}
 	//
