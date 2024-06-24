@@ -120,9 +120,12 @@ public class Results {
 	
 	@Override
 	public String toString() {
+		/*
 		return "Results [id=" + id + ", date=" + date + ", homeTeam=" + homeTeam + ", awayTeam=" + awayTeam
 				+ ", homeScore=" + homeScore + ", awayScore=" + awayScore + ", tournois=" + tournois + ", nomVille="
 				+ nomVille + ", country=" + country + ", neutre=" + neutre + "]";
+		*/
+		return id+","+date+","+homeTeam+","+awayTeam+","+homeScore+","+awayScore+","+tournois+","+nomVille+","+country+","+neutre;
 	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

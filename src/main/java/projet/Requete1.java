@@ -103,8 +103,6 @@ public class Requete1 extends JFrame implements ActionListener{
 		List<Goalscorers> list;//type Goalscorers
 		Iterator<Goalscorers> iter;//type Goalscorers
 		int nb = Integer.parseInt(txtf1.getText());
-		String[] copie;
-		String ligne2 ="";
 		String ligne = null;
 		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("config1");//Foot dans persistence.xm
 		EntityManager em = entityManagerFactory.createEntityManager();

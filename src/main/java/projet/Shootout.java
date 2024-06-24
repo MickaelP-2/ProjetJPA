@@ -46,8 +46,11 @@ public class Shootout {
 	
 	@Override
 	public String toString() {
+		/*
 		return "Shootout [id=" + id + ", date=" + date + ", homeTeam=" + homeTeam + ", awayTeam=" + awayTeam
 				+ ", winner=" + winner + ", firstShooter=" + firstShooter + "]";
+		*/
+		return id+","+date+","+homeTeam+","+awayTeam+","+winner+","+firstShooter;
 	}
 	public int getId() {
 		return id;

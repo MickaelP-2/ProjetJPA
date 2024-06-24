@@ -23,6 +23,10 @@ public class Accueil extends JFrame implements ActionListener,Runnable{
 
 	/**
 	 * Declaration des attibuts de la classe
+	 * quitter: pour quitter et arreter le thread du timer
+	 * verifier: pour charger les fichiers .csv en base de donnée
+	 * requete: pour lancer la requete sélectionnée
+	 * acces pour acceder au menu des opérations sur les tables de la BDD(CRUD)
 	 */
 	private static final long serialVersionUID = 1L;
 	BorderLayout bl,bl2;
@@ -32,7 +36,7 @@ public class Accueil extends JFrame implements ActionListener,Runnable{
 	JTextField txtf1;//affichage de la date et de messages
 	JLabel label1;
 	String ligne1,ligne2;
-	JButton quitter,verifier,requete;//verifier affiche la fenetre de verification,
+	JButton quitter,verifier,requete,acces;//verifier affiche la fenetre de verification,acces pour les opérations sur tables
 	static JRadioButton JRB1,JRB2,JRB3,JRB4,JRB5;
 	ButtonGroup bg;
 	static JScrollPane jsp;//static?? -> txta
@@ -62,6 +66,8 @@ public class Accueil extends JFrame implements ActionListener,Runnable{
 		verifier.addActionListener(this);
 		requete = new JButton("Requètes");
 		requete.addActionListener(this);
+		acces = new JButton("Accès BDD");
+		acces.addActionListener(this);
 		label1 = new JLabel("Résultats: ");
 		label1.setHorizontalAlignment((int)CENTER_ALIGNMENT);
 		txta = new JTextArea(20,28);
@@ -100,6 +106,7 @@ public class Accueil extends JFrame implements ActionListener,Runnable{
 		JP3.add(quitter);
 		JP3.add(requete);
 		JP3.add(verifier);
+		JP3.add(acces);
 		bl2 = new BorderLayout();
 		JP1.setLayout(bl2);
 		JP1.add("North",label1);
@@ -116,7 +123,8 @@ public class Accueil extends JFrame implements ActionListener,Runnable{
 		this.setLocation(100,100);
 		this.setSize(750,450);
 		this.setVisible(true);
-		T1.run();
+		System.out.println("cons de accueil");
+		T1.start();//!=T1.run()
 	}//fin constructeur()
 	
 	/**
@@ -172,6 +180,22 @@ public class Accueil extends JFrame implements ActionListener,Runnable{
 		else if(obj==requete && JRB5.isSelected()==true) {
 			Requete5 req5 = new Requete5();
 			req5.setVisible(true);
+		}
+		else if(obj==acces) {
+			
+			//arret du thread du timer
+			isAlive = false;
+			try {
+				Thread.sleep(1000);
+			}
+			catch(Exception ex) {
+				txtf1.setText(ex.toString());
+				System.err.println(ex.toString());
+			}
+			this.setVisible(false);
+			this.dispose();
+			MenuAcces MA = new MenuAcces();
+			MA.setVisible(true);
 		}
 	}//fin actionPerformed()
 	/**

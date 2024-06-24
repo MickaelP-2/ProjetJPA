@@ -86,16 +86,15 @@ public class Goalscorers {
 	public void setTeam(String team) {
 		this.team = team;
 	}
-
 	
-
-	
-
 	@Override
 	public String toString() {
+		/*
 		return "Goalscorers [id=" + id + ", date=" + date + ", homeTeam=" + homeTeam + ", awayTeam=" + awayTeam
 				+ ", team=" + team + ", scorer=" + scorer + ", minute=" + minute + ", ownGoal=" + ownGoal + ", penalty="
 				+ penalty + "]";
+		*/
+		return id+","+date+","+homeTeam+","+awayTeam+","+team+","+scorer+","+minute+","+ownGoal+","+penalty;
 	}
 
 	public String getScorer() {
