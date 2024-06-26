@@ -23,6 +23,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.Query;
+import utils.FenetreAffichage;
 import utils.MessageAide;
 
 public class RechercherResultats extends JFrame implements ActionListener,MouseListener{
@@ -176,12 +177,6 @@ public class RechercherResultats extends JFrame implements ActionListener,MouseL
 	}
 	//
 	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		RechercherResultats RR = new RechercherResultats();
-		RR.setVisible(true);
-	}
-	//
 	/**
 	 * méthode de recherche par date de résultats  dans la table des résultats.
 	 */

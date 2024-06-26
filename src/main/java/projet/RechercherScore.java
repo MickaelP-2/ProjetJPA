@@ -24,6 +24,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.Query;
+import utils.FenetreAffichage;
 import utils.MessageAide;
 
 //attributs: date, homeTeam, awayTeam, Team, scorer, minute, ownGoal, Penalty
@@ -165,17 +166,6 @@ public class RechercherScore extends JFrame implements ActionListener,MouseListe
 		this.setLocation(150,150);
 		this.setSize(350,300);
 		this.setVisible(true);
-	}
-	//
-	/**
-	 * Méthode main pour tester la fenetre de recherche de buteur
-	 * et ses composants. 
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-			RechercherScore RS = new RechercherScore();
-			RS.setVisible(true);;
 	}
 	//
 	/**

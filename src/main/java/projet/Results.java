@@ -127,19 +127,4 @@ public class Results {
 		*/
 		return id+","+date+","+homeTeam+","+awayTeam+","+homeScore+","+awayScore+","+tournois+","+nomVille+","+country+","+neutre;
 	}
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Results RE = new Results();
-		LocalDate local = LocalDate.of(2024,12,25);
-		RE.setDate(local);
-		RE.setHomeTeam("Montpellier");
-		RE.setAwayTeam("Nimes");
-		RE.setHomeScore(3);
-		RE.setAwayScore(0);
-		RE.setTournois("Derby-Montpelier/Nimes");
-		RE.setNomVille("Montpellier");
-		RE.setCountry("France");
-		RE.setNeutre(true);
-		System.out.println("RE: "+RE.toString());//OK
-	}
 }

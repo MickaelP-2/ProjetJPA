@@ -82,16 +82,6 @@ public class Requete2 extends JFrame implements ActionListener{
 		this.setVisible(true);
 		
 	}
-	/**
-	 * Methode pour tester la classe.
-	 * Visualiser la fenetre créée
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Requete2 req2 = new Requete2();
-		req2.setVisible(true);
-	}
 	//
 	/**
 	 * Methode qui contient le code de la requete 2

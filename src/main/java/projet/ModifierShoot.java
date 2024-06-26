@@ -24,6 +24,8 @@ import jakarta.persistence.Persistence;
 import jakarta.persistence.Query;
 
 import javax.swing.ImageIcon;
+
+import utils.FenetreAffichage;
 import utils.MessageAide;
 
 public class ModifierShoot extends JFrame implements ActionListener,MouseListener{

@@ -23,6 +23,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.Query;
+import utils.FenetreAffichage;
 import utils.MessageAide;
 
 public class ModifierResultats extends JFrame implements ActionListener,MouseListener{
@@ -180,16 +181,7 @@ public class ModifierResultats extends JFrame implements ActionListener,MouseLis
 		this.setVisible(true);
 	}
 	//
-	/**
-	 * Méthode main pour tester la fenetre.
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		ModifierResultats MR = new ModifierResultats();
-		MR.setVisible(true);
-	}
-	//
+	
 	/**
 	 * méthode de recherche par date de résultats  dans la table des résultats.
 	 */

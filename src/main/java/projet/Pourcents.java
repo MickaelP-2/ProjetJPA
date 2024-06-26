@@ -40,18 +40,6 @@ public class Pourcents {
 	}
 	//
 	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Pourcents pour = new Pourcents();
-		pour.setVictoires(12);
-		pour.setDefaites(3);
-		pour.setNuls(1);
-		pour.setTotal(16);
-		pour.setPourcentageVictoires(11.35);
-		pour.setPourcentageDefaites(34.99);
-		pour.setPourcentageNuls(6.5);
-		System.out.println("pour: "+pour.toString());
-	}
 	public int getVictoires() {
 		return victoires;
 	}

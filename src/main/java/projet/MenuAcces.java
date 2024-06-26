@@ -81,12 +81,6 @@ public class MenuAcces extends JFrame implements ActionListener,MouseListener{
 		this.setVisible(true);
 	}
 	//
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		MenuAcces MA = new MenuAcces();
-		MA.setVisible(true);
-	}
-
 	@Override
 	public void mouseClicked(MouseEvent e) {}
 	@Override

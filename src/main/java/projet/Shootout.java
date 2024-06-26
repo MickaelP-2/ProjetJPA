@@ -88,16 +88,6 @@ public class Shootout {
 	public void setFirstShooter(String firstShooter) {
 		this.firstShooter = firstShooter;
 	}
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Shootout SO = new Shootout();
-		LocalDate local = LocalDate.of(2024,12,12);
-		SO.setDate(local);
-		SO.setHomeTeam("Montpellier");
-		SO.setAwayTeam("Nimes");
-		SO.setWinner("Montpellier");
-		SO.setFirstShooter("Montpellier");
-		System.out.println("SO: "+SO.toString());
-	}
+	
 
 }

@@ -1,5 +1,4 @@
-package projet;
-
+package ClassesTest;
 import java.awt.BorderLayout;
 import java.awt.Event;
 import java.awt.event.ActionEvent;

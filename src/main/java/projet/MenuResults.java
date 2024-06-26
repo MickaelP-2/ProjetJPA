@@ -85,16 +85,6 @@ public class MenuResults extends JFrame implements ActionListener,MouseListener{
 		this.setVisible(true);
 	}
 	//
-	/**
-	 * méthode main pour tester l'affichage de la fenetre(interface graphique)
-	 * ainsi que les composants boutons et icone pour signaler l'aide.
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		MenuResults MR = new MenuResults();
-		MR.setVisible(true);
-	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {}

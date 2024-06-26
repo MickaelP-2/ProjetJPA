@@ -252,15 +252,6 @@ public class CreerResultats extends JFrame implements ActionListener,MouseListen
 		txtf9.setText(null);
 		txtf10.setText(null);
 	}
-	/**
-	 * méthode pour tester la fenetres et les composants
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		CreerResultats CR = new CreerResultats();
-		CR.setVisible(true);
-	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {}

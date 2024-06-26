@@ -80,16 +80,7 @@ public class Requete5 extends JFrame implements ActionListener{
 		this.setSize(300,175);
 		this.setVisible(true);
 	}
-	/**
-	 * Methode pour tester la classe
-	 * Visualiser la fenetre créée
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Requete5 req5 = new Requete5();
-		req5.setVisible(true);
-	}
+	
 	//
 	/**
 	 * Methode qui implemente la requete 5

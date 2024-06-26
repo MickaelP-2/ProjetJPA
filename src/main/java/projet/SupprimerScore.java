@@ -23,6 +23,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.Query;
+import utils.FenetreAffichage;
 import utils.MessageAide;
 
 //attributs: date, homeTeam, awayTeam, Team, scorer, minute, ownGoal, Penalty
@@ -169,16 +170,7 @@ public class SupprimerScore extends JFrame implements ActionListener,MouseListen
 		this.setVisible(true);
 	}
 	//
-	/**
-	 * Méthode main pour tester la fenetre de modification
-	 *  d'un but d'un joueur et ses composants. 
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-			SupprimerScore SS = new SupprimerScore();
-			SS.setVisible(true);;
-	}
+	
 	//
 	/**
 	 * Méthode pour effacer les champs des formulaires.

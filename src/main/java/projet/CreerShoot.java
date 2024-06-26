@@ -183,15 +183,7 @@ public class CreerShoot extends JFrame implements ActionListener,MouseListener{
 		}
 	}
 	//
-	/**
-	 * méthode main pour tester la fenetre
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		CreerShoot CSH = new CreerShoot();
-		CSH.setVisible(true);
-	}
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {}
 	@Override

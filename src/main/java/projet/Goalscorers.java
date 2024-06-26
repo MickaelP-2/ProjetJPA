@@ -15,7 +15,7 @@ public class Goalscorers {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	private LocalDate date;
+	private LocalDate date; 
 	private String homeTeam;
 	private String awayTeam;
 	private String team;
@@ -129,34 +129,4 @@ public class Goalscorers {
 		this.penalty = penalty;
 	}
 	//
-	/*
-	@Override
-	public int compareTo(Goalscorers gs1, Goalscorers gs2) {
-	
-			if (gs1.getPopulation()>o2.getPopulation()){
-				return 1;
-			}
-			else if (o1.getPopulation()<o2.getPopulation()){
-				return -1;
-			}
-			return 0;
-	}
-	*/
-	//
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Goalscorers GS = new Goalscorers();
-		LocalDate local = LocalDate.of(2022, 11,11);
-		GS.setDate(local);
-		GS.setHomeTeam("Montpellier");
-		GS.setAwayTeam("Nimes");
-		GS.setTeam("Nimes");
-		GS.setScorer("Joueur1");//-> Utiliser la classe Joueurs
-		GS.setMinute("14");
-		GS.setOwnGoal(false);
-		GS.setPenalty(true);
-		System.out.println("GS: "+GS.toString());
-	}
-
 }

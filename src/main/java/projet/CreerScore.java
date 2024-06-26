@@ -155,15 +155,7 @@ public class CreerScore extends JFrame implements ActionListener,MouseListener{
 		this.setVisible(true);
 	}
 	//
-	/**
-	 * Méthode main pour tester la fenetre et las composants de celle-ci.
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-			CreerScore CS = new CreerScore();
-			CS.setVisible(true);;
-	}
+	
 	//
 	/**
 	 * Méthode pour effacer les champs de texte du formulaire.

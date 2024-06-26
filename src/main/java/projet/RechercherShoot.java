@@ -24,6 +24,8 @@ import jakarta.persistence.Persistence;
 import jakarta.persistence.Query;
 
 import javax.swing.ImageIcon;
+
+import utils.FenetreAffichage;
 import utils.MessageAide;
 
 public class RechercherShoot extends JFrame implements ActionListener,MouseListener{
@@ -415,15 +417,7 @@ public class RechercherShoot extends JFrame implements ActionListener,MouseListe
 			em.close();//fermeture du flux
 	}
 	//
-	/**
-	 * méthode main pour tester la fenetre
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		RechercherShoot RSH = new RechercherShoot();
-		RSH.setVisible(true);
-	}
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {}
 	@Override

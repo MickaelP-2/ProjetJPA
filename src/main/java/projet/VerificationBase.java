@@ -9,33 +9,25 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.ResourceBundle;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
-
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
-import jakarta.persistence.Query;
+//import jakarta.persistence.Query;
 
 /**
  * classe pour vérifier l'existence des tables copies des fichiers .csv
  * exemple: C://xampp/mysql/data/nom_table
+ * Permet aussi d'importer les données des fichiers .csv dans les tables associées.
  */
 public class VerificationBase extends JFrame implements ActionListener{
 	/**
@@ -43,7 +35,7 @@ public class VerificationBase extends JFrame implements ActionListener{
 	 */
 	private static final long serialVersionUID = 1L;
 	//
-	private Path path1, path2, path3;//pour le chemin d'acces aux copies des fichiers .csv
+	private Path path1, path2;;//pour le chemin d'acces aux copies des fichiers .csv
 	String chemin = null, chemin2 = null;//chemin1=BDD,chemin2=fichier.csv
 	BorderLayout bl;
 	JButton fermer, verifier;//fermer ferme la fenetre, verifier pour verifier si les fichiers.csv sont copies en tables
@@ -113,7 +105,6 @@ public class VerificationBase extends JFrame implements ActionListener{
 		String chem = txtf1.getText();//chemin de la base de données
 		path1 = Paths.get(chem);
 		res1 = Files.exists(path1);
-		String ligne = null;
 		
 		if(res1==true) {
 			txtf3.setText("Copie des fichiers en cours..");
@@ -126,8 +117,9 @@ public class VerificationBase extends JFrame implements ActionListener{
 				txtf3.setText("Source de fichier inconnue!");
 				return;
 			}
-			boolean isFile = Files.isRegularFile(path2);
-			boolean isReadable = Files.isReadable(path2);
+			//boolean isFile = Files.isRegularFile(path2);
+			//boolean isReadable = Files.isReadable(path2);
+			//utilisés pendant le procéssus de développement
 			String chemin3 = path2+"/results.csv";
 			res3 = Files.exists(path2);
 			if(res3==true) {
@@ -306,12 +298,7 @@ public class VerificationBase extends JFrame implements ActionListener{
 		}
 	}//fin methode Verification()
 	/////////////////////////////////////////////////////
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		System.out.println("hello!!");
-		VerificationBase VB= new VerificationBase();
-		VB.setVisible(true);
-	}//fin main()
+	
 	/**
 	 * implémentation des actions des boutons
 	 */

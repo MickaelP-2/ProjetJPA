@@ -126,18 +126,6 @@ public class Accueil extends JFrame implements ActionListener,Runnable{
 		System.out.println("cons de accueil");
 		T1.start();//!=T1.run()
 	}//fin constructeur()
-	
-	/**
-	 * Methode main pour tester l'interface
-	 * Visualiser la fenetre créée
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Accueil ACC = new Accueil();
-		ACC.setVisible(true);
-	}//fin main()
-
 		/**
 		 * Methode pour ajouter des actions aux différents boutons
 		 */

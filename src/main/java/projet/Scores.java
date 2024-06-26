@@ -18,28 +18,7 @@ public class Scores {
 		this.nombre = nnombre;
 	}
 	//
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Scores scor = new Scores();
-		scor.setStr("nimport");
-		scor.setNombre(5);
-		Scores scor1 = new Scores("nimport1",11);
-		Scores scor2 = new Scores("nimport2",1);
-		Scores scor3 = new Scores("nimport3",6);
-		Scores scor4 = new Scores("nimport4",33);
-		Scores scor5 = new Scores("nimport5",-10);
-		System.out.println("scores: "+scor.toString());
-		List<Scores> SCOR = new ArrayList<Scores>();
-		SCOR.add(scor1);
-		SCOR.add(scor2);
-		SCOR.add(scor3);
-		SCOR.add(scor4);
-		SCOR.add(scor5);
-		Collections.sort(SCOR, Scores.comparateurScore);
-		System.out.println("Scor: "+SCOR);
-		Collections.sort(SCOR, Scores.comparateurNom);
-		System.out.println("Scor: "+SCOR);
-	}
+	
 	@Override
 	public String toString() {
 		return str + " " + nombre;//changer pour en pas afficher les noms de attributs

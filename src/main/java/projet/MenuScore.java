@@ -85,17 +85,6 @@ public class MenuScore extends JFrame implements ActionListener,MouseListener{
 		this.setVisible(true);
 	}
 	//
-	/**
-	 * méthode main pour tester l'affichage de la fenetre(interface graphique)
-	 * ainsi que les composants boutons et icone pour signaler l'aide.
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		MenuScore MSC = new MenuScore();
-		MSC.setVisible(true);
-	}
-
 	@Override
 	public void mouseClicked(MouseEvent e) {}
 	@Override
